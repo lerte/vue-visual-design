@@ -1,8 +1,44 @@
 import Vue from 'vue'
 import App from './App.vue'
+import store from './store'
+import router from './router'
+
+import './assets/css/global.css'
+
+//iView-UI
+import iView from 'iview'
+Vue.use(iView)
+
+//Mint-UI
+import { Toast, Indicator } from 'mint-ui'
+import 'mint-ui/lib/style.css'
+Vue.prototype.$toast = Toast
+Vue.prototype.$indicator = Indicator
+import mint from 'mint-ui'
+Vue.use(mint)
+
+//Muse-UI
+import MuseUI from 'muse-ui'
+import 'muse-ui/dist/muse-ui.css'
+// import '@/assets/css/theme-dark.css'
+Vue.use(MuseUI)
+
+//为代码文本提供高亮、缩进
+import VueHighlightJS from 'vue-highlightjs'
+Vue.use(VueHighlightJS)
+    //为代码文本格式化
+import pretty from 'pretty'
+Vue.prototype.$prettyDom = pretty
+
+//云数据库
+import lean from './utils/leancloudStorage'
+Vue.prototype.$lean=lean
 
 Vue.config.productionTip = false
+Vue.prototype.$compile = Vue.compile
 
-new Vue({
-  render: h => h(App),
+window._Vue = new Vue({
+  store,
+  router,
+  render: h => h(App)
 }).$mount('#app')
