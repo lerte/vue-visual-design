@@ -3,7 +3,7 @@ import MuseUI from './Muse-UI'
 import MintUI from './Mint-UI'
 import iViewUI from './iView-UI'
 
-var getTemplate = function(info, _attr = {}, _slots = {}) {
+const getTemplate = function(info, _attr = {}, _slots = {}) {
     let component
     switch (info.ui) {
         case 'Muse-UI':
@@ -42,7 +42,7 @@ var getTemplate = function(info, _attr = {}, _slots = {}) {
     return component
 }
 
-var getSlotContent = function(slots) {
+const getSlotContent = function(slots) {
     let inner = ''
     let components = JSON.parse(JSON.stringify(_Vue.$store.state.components))
     Object.keys(slots).forEach(slot => {
@@ -65,7 +65,7 @@ var getSlotContent = function(slots) {
     })
     return inner
 }
-var getStringTypeAttr = function(attributes) {
+const getStringTypeAttr = function(attributes) {
 
     // value为空的不添加到模板中
     let stringAttr = ''
@@ -82,4 +82,8 @@ var getStringTypeAttr = function(attributes) {
     })
     return stringAttr
 }
-export { getSlotContent, getTemplate, getStringTypeAttr }
+export {
+    getSlotContent,
+    getTemplate,
+    getStringTypeAttr
+}

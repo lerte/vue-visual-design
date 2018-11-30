@@ -1,10 +1,28 @@
-import { getTemplate, getSlotContent, getStringTypeAttr } from '@/components/template'
-var handle = function(_attr, _slots) {
+import { getSlotContent, getStringTypeAttr } from '@/components/template'
+
+export default function(_attr, _slots) {
     //定义默认属性
     let attributes = {
+            label: {
+                type: 'text',
+                value: '按钮'
+            },
+            labelPosition: {
+                type: 'selection',
+                value: '',
+                items: ['before', 'after']
+            },
             icon: {
                 type: 'icon',
-                value: 'add'
+                value: ''
+            },
+            primary: {
+                type: 'boolean',
+                value: false
+            },
+            secondary: {
+                type: 'boolean',
+                value: false
             },
             disabled: {
                 type: 'boolean',
@@ -32,17 +50,25 @@ var handle = function(_attr, _slots) {
                 type: 'boolean',
                 value: false
             },
-            secondary:{
-            	type:'boolean',
-            	value:false
+            backgroundColor: {
+                type: 'color',
+                value: ''
             },
-            mini:{
-            	type:'booleam',
-            	value:false
+            color: {
+                type: 'color',
+                value: ''
             },
-            backgroundColor:{
-            	type:'color',
-            	value:''
+            hoverColor: {
+                type: 'color',
+                value: ''
+            },
+            rippleColor: {
+                type: 'color',
+                value: ''
+            },
+            rippleOpacity:{
+                type:'number',
+                value:''
             }
 
         },
@@ -75,11 +101,10 @@ var handle = function(_attr, _slots) {
 
     //字符串模板操作
     let stringAttr = getStringTypeAttr(attributes)
-    let template = `<mu-float-button 
+    let template = `<mu-flat-button 
                         ${stringAttr}>
                         ${subContent}
-                    </mu-float-button>`
+                    </mu-flat-button>`
 
     return { template, attributes, slots }
 }
-export default handle

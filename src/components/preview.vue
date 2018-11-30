@@ -20,11 +20,11 @@
             </mu-content-block>
         </mu-paper>
         <!-- 预览视图 -->
-        <div ref="preview" v-show="previewMode==='pc'" class="preview-area" @click="clickPreview" @contextmenu="rightClick" @keyup.delete="del">
+        <!-- <div ref="preview" v-show="previewMode==='pc'" class="preview-area" @click="clickPreview" @contextmenu="rightClick" @keyup.delete="del">
             <template v-if="!item.parentId">
                 <div :id="item.info.id" v-for="(item, index) in components" :key="index"></div>
             </template>
-        </div>
+        </div> -->
         <iframe src="./#/preview/mobile" class="preview-mobile" v-if="previewMode==='mobile'"></iframe>
         <mu-content-block class="preview-tip" v-if="components.length===0">
             试试拖拽组件进来
@@ -52,6 +52,7 @@
     </section>
 </template>
 <script>
+
 import mount from './mount'
 // 代码高亮样式
 import '@/assets/css/highlight/default.css'

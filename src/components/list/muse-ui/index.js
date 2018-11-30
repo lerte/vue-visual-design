@@ -1,10 +1,7 @@
 import appbar from './appbar'
 import shanGe from './shanGe'
 import textField from './textField'
-import FlatButton from './FlatButton'
-import iconButton from './iconButton'
-import RaisedButton from './RaisedButton'
-import FloatingActionButton from './floatingActionButton'
+import Button from './Button'
 import avatar from './avatar'
 import icon from './icon'
 import list from './list'
@@ -15,7 +12,7 @@ import timePicker from './timePicker'
 import badge from './badge'
 import navigation from './nav'
 import tab from './tab'
-import breadcrumb from './breadcrumb'
+import breadcrumbs from './breadcrumbs'
 import checkBox from './checkBox'
 import radio from './radio'
 import swit from './switch'
@@ -35,10 +32,7 @@ export default {
     appbar,
     shanGe,
     textField,
-    FlatButton,
-    iconButton,
-    RaisedButton,
-    FloatingActionButton,
+    Button,
     avatar,
     icon,
     list,
@@ -49,7 +43,7 @@ export default {
     badge,
     navigation,
     tab,
-    breadcrumb,
+    breadcrumbs,
     checkBox,
     radio,
     swit,

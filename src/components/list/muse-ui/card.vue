@@ -8,10 +8,11 @@
     正文
   </mu-card-text>
   <mu-card-actions>
-    <mu-flat-button label="Action 1"/>
+    <mu-button flat>Action 1</mu-button>
   </mu-card-actions>
 </mu-card>
 </template>
+
 <script>
 export default {
     name: 'card'

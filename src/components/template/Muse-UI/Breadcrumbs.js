@@ -1,8 +1,7 @@
 import { getTemplate, getSlotContent, getStringTypeAttr } from '@/components/template'
 import guid from '@/utils/guid'
-// 深度合并
-import mergeDeep from '@/utils/mergeDeep'
-var handle = function(_attr, _slots, { id }) {
+
+export default function(_attr, _slots, { id }) {
     //定义默认属性
     let attributes = {
             column: {
@@ -78,14 +77,13 @@ var handle = function(_attr, _slots, { id }) {
 
     //字符串模板操作
     let stringAttr = getStringTypeAttr(attributes)
-    let template = `<mu-breadcrumb
+    let template = `<mu-breadcrumbs
                         ${stringAttr}>
                         ${subContent}
-                    </mu-breadcrumb>`
+                    </mu-breadcrumbs>`
 
     //删除自定义非ui属性
     template = template.replace(`:column="${attributes.column.value}"`, '')
 
     return { template, attributes, slots }
 }
-export default handle

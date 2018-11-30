@@ -1,9 +1,9 @@
 <template>
     <div>
        <mu-paper :zDepth="5">
-       		<mu-content-block>
+       		<div>
        			阴影容器
-       		</mu-content-block>
+       		</div>
        </mu-paper>
     </div>
 </template>

@@ -1,10 +1,10 @@
 import Vue from 'vue'
-import preview from './preview'
-//给定模板，和要挂载的元素id，挂载组件   
-var mount = function(id, _component) {
-    let components = _Vue.$store.state.components
+
+//给定模板，和要挂载的元素id，挂载组件
+export default function(id, _component) {
+    let components = window._Vue.$store.state.components
     let component = components.find(c => c.info.id === id)
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
         //需要延迟才能取到document.getElementById(id)
         setTimeout(() => {
             let data={}
@@ -31,7 +31,7 @@ var mount = function(id, _component) {
                     }
 
                     //添加选中效果
-                    let info = _Vue.$store.state.currentComponent.info
+                    let info = window._Vue.$store.state.currentComponent.info
                     if (!info)
                         this.$el.click()
 
@@ -42,5 +42,3 @@ var mount = function(id, _component) {
         }, 200)
     })
 }
-
-export default mount

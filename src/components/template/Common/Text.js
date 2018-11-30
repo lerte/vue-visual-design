@@ -1,6 +1,6 @@
-import { getTemplate, getSlotContent, getStringTypeAttr } from '@/components/template'
+import { getStringTypeAttr } from '@/components/template'
 
-var handle = function(_attr, _slots) {
+export default function(_attr, _slots) {
     //定义默认属性
     let attributes = {
             text: {
@@ -14,12 +14,7 @@ var handle = function(_attr, _slots) {
     Object.assign(slots, _slots)
     Object.assign(attributes, _attr)
 
-    //根据组件不同需要做的不同操作
-
-
-    //获取插槽模板内容
-    var subContent = getSlotContent(slots) || '&nbsp;'
-        //设置当前组件的slot
+    //设置当前组件的slot
     if (attributes.slot && attributes.slot !== 'default') {
         attributes.slot = {
             type: 'text',
@@ -41,4 +36,3 @@ var handle = function(_attr, _slots) {
 
     return { template, attributes, slots }
 }
-export default handle

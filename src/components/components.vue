@@ -1,20 +1,14 @@
 <template>
     <section>
-        <mu-content-block style="display:flex;">
-            <mu-select-field :value="activeUI" @change="handleTabChange" autoWidth>
-                <mu-menu-item title="Muse-UI" value="Muse-UI">
-                </mu-menu-item>
-                <mu-menu-item title="Mint-UI" value="Mint-UI">
-                </mu-menu-item>
-                <mu-menu-item title="iView-UI" value="iView-UI">
-                </mu-menu-item>
-                <mu-menu-item title="Element-UI" value="Element-UI">
-                </mu-menu-item>
-                <mu-menu-item title="通用" value="Common">
-                </mu-menu-item>
-            </mu-select-field>
-            <mu-sub-header style="white-space:nowrap;">- 组件</mu-sub-header>
-        </mu-content-block>
+        <mu-container>
+            <mu-select label="组件" :value="activeUI" @change="handleTabChange" full-width>
+                <mu-option label="Muse-UI" value="Muse-UI"></mu-option>
+                <mu-option label="Mint-UI" value="Mint-UI"></mu-option>
+                <mu-option label="iView-UI" value="iView-UI"></mu-option>
+                <mu-option label="Element-UI" value="Element-UI"></mu-option>
+                <mu-option label="通用" value="Common"></mu-option>
+            </mu-select>
+        </mu-container>
         <div v-if="activeUI === 'Muse-UI'">
             <ul class="components-list">
                 <!-- 导航栏 -->
@@ -28,20 +22,8 @@
                 <li draggable="true" @dragstart="dragStart" data-name="Text Field">
                     <textField />
                 </li>
-                <li draggable="true" @dragstart="dragStart" data-name="Flat Button">
-                    <FlatButton />
-                </li>
-                <li draggable="true" @dragstart="dragStart" data-name="Raised Button">
-                    <RaisedButton />
-                </li>
-                <li draggable="true" @dragstart="dragStart" data-name="Icon Button">
-                    <iconButton />
-                </li>
                 <li draggable="true" @dragstart="dragStart" data-name="Icon">
                     <icon />
-                </li>
-                <li draggable="true" @dragstart="dragStart" data-name="Floating Action Button">
-                    <floatingActionButton />
                 </li>
                 <li draggable="true" @dragstart="dragStart" data-name="Avatar">
                     <avatar />
@@ -168,7 +150,7 @@
                     <Icon type="happy-outline" :size="28" /> icon
                 </li>
                 <li draggable="true" @dragstart="dragStart" data-name="Input">
-                        <Input placeholder="Input"></Input>
+                    <input placeholder="Input">
                 </li>
                 <li draggable="true" @dragstart="dragStart" data-name="Radio">
                     <Radio>Radio</Radio>
@@ -251,12 +233,6 @@ import mintUiList from './list/mint-ui'
 import iViewUiList from './list/iview-ui'
 export default {
     name: 'components',
-    data() {
-        return {}
-    },
-    mounted() {
-
-    },
     methods: {
         handleTabChange(val) {
             this.activeUI = val
@@ -301,6 +277,7 @@ export default {
     }
 }
 </script>
+
 <style lang="less" scoped>
 .components-list {
     list-style: none;

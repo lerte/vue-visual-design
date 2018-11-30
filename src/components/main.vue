@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="wrapper">
         <mu-appbar>
             <router-link to="/">
                 <div class="title">
@@ -13,57 +13,61 @@
             <mu-button flat slot="right" @click="setting.open=true">
                 <mu-icon value="settings"></mu-icon>
             </mu-button>
-            <mu-button flat slot="right" href="https://github.com/jaweii/Vue-Layout">
+            <mu-button flat slot="right" href="https://github.com/lerte/vue-visual-design">
                 <mu-icon value=":fa fa-2x fa-github"></mu-icon>
             </mu-button> 
         </mu-appbar>
-        <mu-row class="main-content">
-            <mu-col class="attributes" :width="width.attr" :tablet="width.attr" :desktop="width.attr">
-                <mu-sub-header class="header">
-                    <mu-select class="select-field" autoWidth v-model="selectField.value">
-                        <mu-option label="属性" value="属性"></mu-option>
-                        <mu-option label="组件树" value="组件树"></mu-option>
-                    </mu-select>
-                    <span><a class="parent-component" v-if="parentComponent" @click="switchComponent">┡ {{parentComponent.info.name}}</a> {{current.info?' - '+current.info.name:''}}</span>
-                </mu-sub-header>
-                <attributes v-if="selectField.value==='属性'" class="attributes-content" />
-                <component-tree v-if="selectField.value==='组件树'" class="component-tree" :components="$store.state.components.filter(c=>!c.parentId)" />
-                <div class="attributes-bottom" v-if="current.info">
-                    <mu-flat-button label="UI文档" @click="openUiDocument" />
-                    <mu-flat-button label="操作" @click="oprate" />
-                </div>
-            </mu-col>
-            <mu-col class="preview" :width="width.preview" :tablet="width.preview" :desktop="width.preview">
-                <preview ref="preview" />
-            </mu-col>
-            <mu-col class="components" :width="width.components" :tablet="width.components" :desktop="width.components">
-                <components ref="components" />
-            </mu-col>
-        </mu-row>
+        <main>
+            <mu-row>
+                <mu-col class="attributes" span="2">
+                    <mu-sub-header class="header">
+                        <mu-select class="select-field" autoWidth v-model="selectField.value">
+                            <mu-option label="属性" value="属性"></mu-option>
+                            <mu-option label="组件树" value="组件树"></mu-option>
+                        </mu-select>
+                        <span><a class="parent-component" v-if="parentComponent" @click="switchComponent">┡ {{parentComponent.info.name}}</a> {{current.info?' - '+current.info.name:''}}</span>
+                    </mu-sub-header>
+                    <attributes v-if="selectField.value==='属性'" class="attributes-content" />
+                    <component-tree v-if="selectField.value==='组件树'" class="component-tree" :components="$store.state.components.filter(c=>!c.parentId)" />
+                    <div class="attributes-bottom" v-if="current.info">
+                        <mu-flat-button label="UI文档" @click="openUiDocument" />
+                        <mu-flat-button label="操作" @click="oprate" />
+                    </div>
+                </mu-col>
+                <mu-col class="preview" span="8">
+                    <preview ref="preview" />
+                </mu-col>
+                <mu-col class="components" span="2">
+                    <components ref="components" />
+                </mu-col>
+            </mu-row>
+        </main>
         <mu-dialog :open="setting.open" @close="setting.open=false" title="设置" scrollable>
-            <br>
             <mu-checkbox label="选中边框效果" v-model="setting.selectEffect" @change="setSelectEffect" />
-            <br/>
-            <mu-flat-button primary label="关闭" @click="setting.open=false" slot="actions" />
+            <mu-button color="primary" @click="setting.open=false" slot="actions">
+                关闭
+            </mu-button>
         </mu-dialog>
         <mu-dialog :open="share.open" @close="share.open=false" title="分享当前布局" scrollable>
-            <br>
-            <mu-flat-button label="点击生成" @click="createShare" v-if="!share.url" />
-            <br>
-            <mu-text-field v-model="share.url" type="url" :disabled="true" hintText="分享地址" label="分享地址" fullWidth />
-            <mu-text-field v-model="share.experience" type="url" :disabled="true" label="体验地址" hintText="体验地址" fullWidth />
-            <br/>
-            <mu-flat-button primary label="关闭" @click="share.open=false" slot="actions" />
+            <mu-button flat @click="createShare" v-if="!share.url">
+                点击生成
+            </mu-button>
+            <mu-text-field v-model="share.url" type="url" :disabled="true" label="分享地址" label-float fullWidth />
+            <mu-text-field v-model="share.experience" type="url" :disabled="true" label="体验地址" label-float fullWidth />
+            <mu-button color="primary" @click="share.open=false" slot="actions">
+                关闭
+            </mu-button>
         </mu-dialog>
     </div>
 </template>
+
 <script>
 import attributes from './attributes'
 import components from './components'
 import preview from './preview'
 import componentTree from './componentTree.vue'
 export default {
-    name: 'app',
+    name: 'mainPage',
     data() {
         return {
             setting: {
@@ -87,11 +91,6 @@ export default {
         current: { //预览视图中选中的组件
             get() {
                 return this.$store.state.currentComponent
-            }
-        },
-        width: { //三栏的宽度设置
-            get() {
-                return this.$store.state.width[0]
             }
         },
         parentComponent: {
@@ -196,6 +195,7 @@ export default {
     }
 }
 </script>
+
 <style lang="less" scoped>
 @import '~muse-ui/src/styles/colors.less';
 @previewBG: @deepPurple50;

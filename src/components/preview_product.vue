@@ -2,10 +2,13 @@
     <section class="preview">
         <!-- 预览视图 -->
         <div ref="preview" class="preview-area">
-            <div v-if="!item.parentId" :id="item.info.id" v-for="(item,index) in components"></div>
+            <template v-if="!item.parentId">
+                <div :id="item.info.id" v-for="(item, index) in components" :key="index"></div>
+            </template>
         </div>
     </section>
 </template>
+
 <script>
 import mount from './mount'
 // scoped style插件 ，解决webkit不支持scoped的问题

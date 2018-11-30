@@ -7,6 +7,7 @@ import './assets/css/global.css'
 
 //iView-UI
 import iView from 'iview'
+import 'iview/dist/styles/iview.css'
 Vue.use(iView)
 
 //Mint-UI
@@ -38,7 +39,9 @@ Vue.config.productionTip = false
 Vue.prototype.$compile = Vue.compile
 
 window._Vue = new Vue({
+  el: '#app',
   store,
   router,
-  render: h => h(App)
-}).$mount('#app')
+  template: '<App/>',
+  components: { App }
+})

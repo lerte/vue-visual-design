@@ -1,7 +1,6 @@
-import { getTemplate, getSlotContent, getStringTypeAttr } from '@/components/template'
-import guid from '@/utils/guid'
+import { getSlotContent, getStringTypeAttr } from '@/components/template'
 
-var handle = function(_attr, _slots,{id}) {
+export default function(_attr, _slots,{id}) {
     //定义默认属性
     let attributes = {
             tooltip: {
@@ -55,4 +54,3 @@ var handle = function(_attr, _slots,{id}) {
 
     return { template, attributes, slots }
 }
-export default handle

@@ -3,12 +3,11 @@ import Img from './Img'
 import Br from './Br'
 import Div from './Div'
 import A from './A'
-var obj = {
+
+export default {
     Text,
     Img,
     Br,
     Div,
     A
 }
-
-export default obj

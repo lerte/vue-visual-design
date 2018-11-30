@@ -2,10 +2,7 @@ import AppBar from './App Bar'
 import Grid from './Grid'
 import Col from './Col'
 import TextField from './Text Field'
-import FlatButton from './Flat Button'
-import RaisedButton from './Raised Button'
-import IconButton from './Icon Button'
-import FloatingActionButton from './Floating Action Button'
+import Button from './Button'
 import Avatar from './Avatar'
 import List from './List'
 import ListItem from './List Item'
@@ -23,8 +20,8 @@ import BottomNav from './Bottom Nav'
 import BottomNavItem from './Bottom Nav Item'
 import Tabs from './Tabs'
 import Tab from './Tab'
-import Breadcrumb from './Breadcrumb'
-import BreadcrumbItem from './Breadcrumb Item'
+import Breadcrumbs from './Breadcrumbs'
+import BreadcrumbsItem from './Breadcrumbs Item'
 import Checkbox from './Checkbox'
 import Radio from './Radio'
 import Switch from './Switch'
@@ -52,10 +49,7 @@ var obj = {
     ['Grid']: Grid,
     ['Col']: Col,
     ['Text Field']: TextField,
-    ['Flat Button']: FlatButton,
-    ['Raised Button']: RaisedButton,
-    ['Icon Button']: IconButton,
-    ['Floating Action Button']: FloatingActionButton,
+    Button,
     ['Avatar']: Avatar,
     ['List']:List,
     ['List Item']:ListItem,
@@ -73,8 +67,8 @@ var obj = {
     ['Bottom Nav Item']:BottomNavItem,
     Tabs,
     Tab,
-    ['Breadcrumb']:Breadcrumb,
-    ['Breadcrumb Item']:BreadcrumbItem,
+    ['Breadcrumbs']:Breadcrumbs,
+    ['Breadcrumbs Item']:BreadcrumbsItem,
     Checkbox,
     Radio,
     Switch,

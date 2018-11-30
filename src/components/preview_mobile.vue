@@ -6,8 +6,9 @@
         </div>
     </section>
 </template>
+
 <script>
-import mount from './mount'
+require('./mount')
 import previewProduct from './preview_product'
 export default {
     name: 'product',

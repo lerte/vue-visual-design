@@ -7,6 +7,6 @@
 </template>
 <script>
 export default {
-    name: 'nav'
+    name: 'navigator'
 }
 </script>

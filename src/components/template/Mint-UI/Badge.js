@@ -1,5 +1,6 @@
-import { getTemplate, getSlotContent, getStringTypeAttr } from '@/components/template'
-var handle = function(_attr, _slots) {
+import { getSlotContent, getStringTypeAttr } from '@/components/template'
+
+export default function(_attr, _slots) {
     //定义默认属性
     let attributes = {
             text: {
@@ -59,4 +60,3 @@ var handle = function(_attr, _slots) {
     template = template.replace(`:text="${attributes.text.value}"`, '')
     return { template, attributes, slots }
 }
-export default handle

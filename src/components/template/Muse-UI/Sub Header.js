@@ -1,7 +1,6 @@
-import { getTemplate, getSlotContent , getStringTypeAttr } from '@/components/template'
-import guid from '@/utils/guid'
+import { getSlotContent } from '@/components/template'
 
-var handle = function(_attr, _slots, _info) {
+export default function(_attr, _slots) {
     //定义默认属性
     let attributes = {
             text: {
@@ -40,12 +39,7 @@ var handle = function(_attr, _slots, _info) {
         }
     }
 
-    //字符串模板操作
-    let stringAttr = getStringTypeAttr(attributes)
-    let template = `<mu-sub-header >
-                    ${subContent||attributes.text.value}
-                </mu-sub-header>`
+    let template = `<mu-sub-header >${subContent||attributes.text.value}</mu-sub-header>`
 
     return { template, attributes, slots }
 }
-export default handle

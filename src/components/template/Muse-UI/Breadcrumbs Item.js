@@ -1,6 +1,6 @@
-import { getTemplate, getSlotContent, getStringTypeAttr  } from '@/components/template'
+import { getSlotContent, getStringTypeAttr  } from '@/components/template'
 
-var handle = function(_attr, _slots) {
+export default function(_attr, _slots) {
     //定义默认属性
     let attributes = {
             text:{
@@ -39,14 +39,13 @@ var handle = function(_attr, _slots) {
 
     //字符串模板操作
     let stringAttr = getStringTypeAttr(attributes)
-    let template = `<mu-breadcrumb-item 
+    let template = `<mu-breadcrumbs-item 
                     	${stringAttr}>
                         ${text}
-                    </mu-breadcrumb-item>`
+                    </mu-breadcrumbs-item>`
 
     //删除自定义非ui属性
     template = template.replace(`text="${text}"`, '')
 
     return { template, attributes, slots }
 }
-export default handle

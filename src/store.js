@@ -6,19 +6,6 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        width: [{
-            attr: '15',
-            preview: '70',
-            components: '15'
-        }, {
-            attr: '20',
-            preview: '60',
-            components: '20'
-        }, {
-            attr: '25',
-            preview: '50',
-            components: '25'
-        }],
         css: '', //用户编辑的自定义css字符串
         activeUI:'Muse-UI',
         currentComponent: {}, //预览视图的选中组件
@@ -30,18 +17,14 @@ export default new Vuex.Store({
         setState(state, obj) {
             // obj = mergeDeep(JSON.parse(JSON.stringify(state)), obj)
             Object.assign(state, obj)
-
             //保存本地
             localStorage.store = JSON.stringify(state)
-
-
         }
     },
     actions: {
         delComponent(context, id) {
             //删除前备份一份
             context.commit('setState', { backupComponents: JSON.parse(JSON.stringify(context.state.components)) })
-
             let components = context.state.components
             let index = components.findIndex(c => c.info.id === id)
             let component = components[index]
@@ -95,7 +78,6 @@ export default new Vuex.Store({
 
             //更新
             context.commit('setState', { currentComponent: {}, components })
-
             return Promise.resolve(components)
         }
     }
