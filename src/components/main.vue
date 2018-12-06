@@ -30,8 +30,8 @@
                     <attributes v-if="selectField.value==='属性'" class="attributes-content" />
                     <component-tree v-if="selectField.value==='组件树'" class="component-tree" :components="$store.state.components.filter(c=>!c.parentId)" />
                     <div class="attributes-bottom" v-if="current.info">
-                        <mu-flat-button label="UI文档" @click="openUiDocument" />
-                        <mu-flat-button label="操作" @click="oprate" />
+                        <mu-button flat @click="openUiDocument">UI文档</mu-button>
+                        <mu-button flat @click="oprate">操作</mu-button>
                     </div>
                 </mu-col>
                 <mu-col class="preview" span="8">

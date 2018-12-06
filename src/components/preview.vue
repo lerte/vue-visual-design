@@ -4,20 +4,41 @@
         <mu-paper class="preview-head">
             <div class="bar">
                 <mu-sub-header style="display:inline;">{{showType}}</mu-sub-header>
-                <mu-icon-button style="float:right;" icon="fullscreen" tooltip="全屏" @click="fullScreen" />
-                <mu-icon-button style="float:right;" icon="delete" tooltip="清空" @click="empty" />
-                <mu-icon-menu style="float:right;" icon="stay_current_portrait" tooltip="视图" :targetOrigin="{vertical: 'bottom',horizontal: 'left'}">
-                    <mu-menu-item title="调整比例" @click="setWidth" />
-                    <mu-menu-item :title="previewMode==='pc'?'手机模式':'PC模式'" @click="previewMode=previewMode==='pc'?'mobile':'pc'" />
-                </mu-icon-menu>
-                <mu-icon-button style="float:right;" icon=":iconfont icon-css" tooltip="编辑样式" @click="editStyle" />
-                <mu-icon-button style="float:right;" icon="code" tooltip="查看代码" @click="showCode" />
-                <mu-icon-button v-if="$store.state.backupComponents.length" style="float:right;" icon="undo" tooltip="撤销" @click="undo" />
+                <mu-button flat style="height:48px;float:right;" @click="fullScreen">
+                    <mu-icon value="fullscreen"></mu-icon>
+                </mu-button>
+                <mu-button flat style="height:48px;float:right;" @click="empty">
+                    <mu-icon value="delete"></mu-icon>
+                </mu-button>
+                <mu-menu cover style="float:right;">
+                    <mu-button flat style="height:48px;">
+                        <mu-icon value="stay_current_portrait"></mu-icon>
+                    </mu-button>
+                    <mu-list slot="content">
+                        <mu-list-item button @click="setWidth">
+                            <mu-list-item-title>调整比例</mu-list-item-title>
+                        </mu-list-item>
+                        <mu-list-item button @click="previewMode=previewMode==='pc'?'mobile':'pc'">
+                            <mu-list-item-title>
+                                {{ previewMode === 'pc' ? '手机模式' : 'PC模式' }}
+                            </mu-list-item-title>
+                        </mu-list-item>
+                    </mu-list>
+                </mu-menu>
+                <mu-button flat style="height:48px;float:right;" @click="editStyle">
+                    <mu-icon value=":fa fa-css3"></mu-icon>
+                </mu-button>
+                <mu-button flat style="height:48px;float:right;" @click="showCode">
+                    <mu-icon value="code"></mu-icon>
+                </mu-button>
+                <mu-button v-if="$store.state.backupComponents.length" flat style="height:48px;float:right;" @click="undo">
+                    <mu-icon value="undo"></mu-icon>
+                </mu-button>
             </div>
-            <mu-content-block :class="{'content':true,'active':showType!=='预览'}">
+            <div :class="{'content':true,'active':showType!=='预览'}">
                 <pre v-show="showType==='CODE'" v-highlightjs="getSource(components)"><code class="html"></code></pre>
                 <textarea v-show="showType==='编辑样式'" class="css-editor" placeholder=".vue-layout{ ... }" v-model="css"></textarea>
-            </mu-content-block>
+            </div>
         </mu-paper>
         <!-- 预览视图 -->
         <!-- <div ref="preview" v-show="previewMode==='pc'" class="preview-area" @click="clickPreview" @contextmenu="rightClick" @keyup.delete="del">
@@ -26,9 +47,9 @@
             </template>
         </div> -->
         <iframe src="./#/preview/mobile" class="preview-mobile" v-if="previewMode==='mobile'"></iframe>
-        <mu-content-block class="preview-tip" v-if="components.length===0">
+        <div class="preview-tip" v-if="components.length===0">
             试试拖拽组件进来
-        </mu-content-block>
+        </div>
         <!-- 组件拖动属于嵌套操作时，这个弹出框会弹出 -->
         <mu-popover v-if="current.info" :trigger="popover.trigger" :open="popover.open" @close="popover.open=false">
             <mu-menu @change="selectedSlot">
