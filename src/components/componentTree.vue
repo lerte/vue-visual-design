@@ -1,11 +1,11 @@
 <template>
     <section>
-        <div v-for="c in components">
-            <a @click="click(c.info.id)">
+        <div v-for="(component, index) in components" :key="index">
+            <a @click="click(component.info.id)">
                 <mu-icon @click="show=!show" :value="show?'keyboard_arrow_down':'keyboard_arrow_right'" style="vertical-align:middle;" />
                 {{c.info.name}}</a>
-            <div v-for="(slot,key) in c.slots" v-show="show">
-                <componentTree :components="slotToComponents(c.slots[key])" v-if="Object.keys(c.slots).filter(slot=>c.slots[slot].length).length" />
+            <div v-for="(slot, key) in component.slots" v-show="show" :key="key">
+                <componentTree :components="slotToComponents(component.slots[key])" v-if="Object.keys(component.slots).filter(slot=>component.slots[slot].length).length" />
             </div>
         </div>
     </section>

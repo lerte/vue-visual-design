@@ -41,34 +41,37 @@
             </div>
         </mu-paper>
         <!-- 预览视图 -->
-        <!-- <div ref="preview" v-show="previewMode==='pc'" class="preview-area" @click="clickPreview" @contextmenu="rightClick" @keyup.delete="del">
-            <template v-if="!item.parentId">
-                <div :id="item.info.id" v-for="(item, index) in components" :key="index"></div>
-            </template>
-        </div> -->
+        <div ref="preview" v-show="previewMode==='pc'" class="preview-area" @click="clickPreview" @contextmenu="rightClick" @keyup.delete="del">
+            <div :id="item.info.id" v-for="(item, index) in components" :key="index"></div>
+        </div>
         <iframe src="./#/preview/mobile" class="preview-mobile" v-if="previewMode==='mobile'"></iframe>
         <div class="preview-tip" v-if="components.length===0">
             试试拖拽组件进来
         </div>
         <!-- 组件拖动属于嵌套操作时，这个弹出框会弹出 -->
-        <mu-popover v-if="current.info" :trigger="popover.trigger" :open="popover.open" @close="popover.open=false">
-            <mu-menu @change="selectedSlot">
-                <label>
-                    &nbsp;&nbsp;嵌套到{{current.info.name}}:
-                </label>
-                <mu-menu-item v-for="(val,key,index) in current.slots" :title="key" :value="key" :key="index" />
-            </mu-menu>
+        <mu-popover v-if="current.info" cover :trigger="popover.trigger" :open.sync="popover.open" @close="popover.open=false">
+            <mu-list>
+                <mu-list-item button v-for="(key, index) in current.slots" :key="index">
+                    <mu-list-item-title>{{key}}</mu-list-item-title>
+                </mu-list-item>
+            </mu-list>
         </mu-popover>
         <!-- 右键菜单 -->
         <div ref="contextmenu" :style="contextmenu.style"></div>
         <mu-popover v-if="current.info" :anchorOrigin="{ 'vertical': 'top', 'horizontal': 'middle'}" :targetOrigin="{ 'vertical': 'top', 'horizontal': 'left'}" :trigger="contextmenu.trigger" :open="contextmenu.open" @close="contextmenu.open = false">
-            <mu-content-block>{{this.current.info.name}}</mu-content-block>
+            <div>{{this.current.info.name}}</div>
             <mu-divider/>
-            <mu-menu class="contextmenu" @itemClick="contextmenu.open=false" autoWidth>
-                <mu-menu-item title="复制" @click="copyComponent" />
-                <mu-menu-item title="粘贴" @click="pasteComponent" v-if="$store.state.copiedComponents.length" />
-                <mu-menu-item title="删除" @click="del" />
-            </mu-menu>
+            <mu-list class="contextmenu" @itemClick="contextmenu.open=false" autoWidth>
+                <mu-list-item button @click="copyComponent">
+                    <mu-list-item-title>复制</mu-list-item-title>
+                </mu-list-item>
+                <mu-list-item button @click="pasteComponent" v-if="$store.state.copiedComponents.length">
+                    <mu-list-item-title>粘贴</mu-list-item-title>
+                </mu-list-item>
+                <mu-list-item button @click="del">
+                    <mu-list-item-title>删除</mu-list-item-title>
+                </mu-list-item>
+            </mu-list>
         </mu-popover>
     </section>
 </template>
